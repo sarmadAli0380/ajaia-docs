@@ -5,7 +5,7 @@ where they helped, what was changed or rejected along the way, and how the resul
 
 ## Tools
 
-- **Claude Code (Opus)** as the orchestrator. It ran a spec-first "autopilot" pipeline with separate
+- **Claude Code (Opus)** as the orchestrator. It ran "autopilot", a spec-first pipeline the author designed and built as a Claude Code skill, with separate
   sub-agents, each with a narrow role:
   - **Impact analyst.** Read the repository and the approved spec, then produced an impact report:
     affected consumers, regression flows, risks rated HIGH/MEDIUM/LOW, and unknowns.
@@ -110,6 +110,13 @@ These are the real course corrections made during the run.
 
 ## Author's notes
 
-> **TODO (human author):** add your personal notes here. For example: what you would do differently, where
-> you overrode or edited AI output by hand, how long each phase took, and anything the AI got wrong that
-> isn't listed above.
+How I steered the AI during this build:
+
+- Designed the delivery pipeline myself (a Claude Code skill I wrote, called "autopilot"). I built it because AI writes code fast but over-trusts its own output. Its rules: a human signs off the spec before any code; building and verifying are done by separate agents in isolated git worktrees; validators never see the implementer's explanations; only hashed command output counts as evidence, not an agent's "PASS"; repair rounds are capped at three; and nothing is committed unless the exact reviewed tree passes a deterministic gate. On this project it caught a zip-bomb guard that was bypassable twice, which a single self-grading agent had marked as done.
+- Set the product scope before any code. I chose Render + Neon so persistence would survive restarts on free tiers, seeded users with mocked sign-in so reviewers can test sharing in seconds, import-as-a-new-document as the upload flow, and Viewer/Editor roles, version history and Markdown export as stretch. I left out autosave.
+- Rejected the first spec. The AI's draft covered the features but not robustness, so I made it add a responsive UI (360 to 1280 px) and an explicit 22-item edge-case catalogue, each with a defined behaviour, before anything was built.
+- Challenged the role split. When the implementer agent was "checking responsiveness", I asked why the builder was verifying its own work rather than QA. As a result, responsive behaviour is proven by independent Playwright runs at three viewports, with screenshots, and the builder's self-checks count for nothing.
+- Managed the timebox actively. I kept feeding the AI my remaining minutes, which forced a plan with hard cutoffs, a cap on repair rounds, and deployment set up in parallel with the final validation round instead of after it.
+- Chose to delete an AI-generated .env.example that a safety guard had blocked, rather than let the AI work around the guard.
+- Refused to ship a known overclaim. When the final reviewer found one inaccurate sentence in the AI-written workflow note, I chose to correct it and disclose that the shipped tree differs from the validated one only by that sentence, rather than ship it as-is.
+- Kept the write-up anchored to the brief. I made the AI rebuild this submission from the original instructions, section by section, and I narrate the walkthrough video in my own voice rather than using text-to-speech, because communication is part of what is being assessed.

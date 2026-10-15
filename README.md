@@ -5,7 +5,7 @@ A lightweight, Google-Docs-inspired document editor. You can create and edit ric
 version history, and export to Markdown. One Node.js process serves both the REST API and the React app.
 Data is stored in Postgres (Neon in production), or in an embedded PGlite database locally.
 
-- **Live app:** `TODO: add the Render URL after deploying` (see [Deploying](#deploying-render--neon))
+- **Live app:** https://ajaia-docs-tt4n.onrender.com (free tier: the first request after idle can take ~30–50 s)
 - **Walkthrough video:** see [`VIDEO_URL.txt`](VIDEO_URL.txt)
 - Design and tradeoffs: [`ARCHITECTURE.md`](ARCHITECTURE.md). How AI was used: [`AI_WORKFLOW.md`](AI_WORKFLOW.md).
   What's included in the submission: [`SUBMISSION.md`](SUBMISSION.md).

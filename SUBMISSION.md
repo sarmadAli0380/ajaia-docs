@@ -1,7 +1,7 @@
 # Submission: Ajaia Docs
 
-- **Live app:** `TODO: Render URL`
-- **Walkthrough video:** `TODO: video URL` (also in [`VIDEO_URL.txt`](VIDEO_URL.txt))
+- **Live app:** https://ajaia-docs-tt4n.onrender.com
+- **Walkthrough video:** https://www.loom.com/share/21d51be3254942b98983d1093c2aaf1d (also in [`VIDEO_URL.txt`](VIDEO_URL.txt))
 
 ## Seeded accounts (mocked sign-in: pick a user, no password)
 
@@ -43,8 +43,8 @@
   variables, the edge-case catalogue, responsive breakpoints, and status (working, incomplete, next).
 - `ARCHITECTURE.md`: priorities, data model, access model, concurrency, sanitization, tradeoffs, scope cuts
   and next steps.
-- `AI_WORKFLOW.md`: the tools and pipeline used, course corrections, and verification. It contains a TODO
-  for the author's personal notes.
+- `AI_WORKFLOW.md`: the tools and pipeline used, course corrections, and verification. It ends with the
+  author's notes on how the AI was steered.
 - `SUBMISSION.md`: this file.
 - `VIDEO_URL.txt`: placeholder for the video link.
 
@@ -55,8 +55,6 @@ npm ci && npm run dev     # http://localhost:3000
 npm test                  # all tests
 ```
 
-## Outstanding items for the author
+## Repository
 
-- Deploy to Render and Neon (README → Deploying), then replace the Live app URL above and in `README.md`.
-- Record the walkthrough video and put its link in `VIDEO_URL.txt` and above.
-- Fill in the personal-notes TODO in `AI_WORKFLOW.md`.
+- Source: https://github.com/sarmadAli0380/ajaia-docs (branch `main`), deployed to Render with Neon Postgres.
