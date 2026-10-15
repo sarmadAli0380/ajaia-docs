@@ -1,0 +1,22 @@
+# Render Blueprint for Ajaia Docs (one web service; database is Neon Postgres).
+# Deploy: Render dashboard -> New -> Blueprint -> select this repo, then set DATABASE_URL.
+services:
+  - type: web
+    name: ajaia-docs
+    runtime: node
+    plan: free
+    # NODE_ENV=production makes npm skip devDependencies, but the build needs Vite/TypeScript.
+    buildCommand: npm ci --include=dev && npm run build
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: NODE_VERSION
+        value: "22"
+      # Neon connection string, e.g. postgresql://USER:PASSWORD@HOST/DB?sslmode=require
+      - key: DATABASE_URL
+        sync: false
+      # Signs the session cookie. Required in production; Render generates a random value.
+      - key: SESSION_SECRET
+        generateValue: true
